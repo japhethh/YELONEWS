@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('body');
             $table->timestamp('published_at')->nullable();
             $table->boolean('featured')->default(false);
-            
             $table->softDeletes();
             $table->timestamps();
         });
