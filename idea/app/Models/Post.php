@@ -36,6 +36,7 @@ class Post extends Model
         });
     }
 
+
     protected $casts = [
         'published_at' => 'datetime',
     ];
@@ -49,9 +50,26 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    //Comment::class = post_id
+    }
+
+    public function likes(){
+        return $this->belongsToMany(User::class,'post_like')->withTimestamps();
+    }
+
     public function scopeFeatured($query)
     {
         $query->where('featured', true);
+    }
+    public function scopePopular($query)
+    {
+        $query->withCount('likes')->orderBy('likes_count','desc');
+    }
+    public function scopeSearch($query,$search = ''){
+        $query->where('title', 'like', "%{$search}%");
     }
 
     public function getExcerpt(){

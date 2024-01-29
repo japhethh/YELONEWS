@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\HairResource\Pages;
+namespace App\Filament\Resources\CommentResource\Pages;
 
-use App\Filament\Resources\HairResource;
+use App\Filament\Resources\CommentResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListHairs extends ListRecords
+class ListComments extends ListRecords
 {
-    protected static string $resource = HairResource::class;
+    protected static string $resource = CommentResource::class;
 
     protected function getHeaderActions(): array
     {

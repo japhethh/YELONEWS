@@ -1,4 +1,5 @@
-<x-app-layout>
+<x-app-layout title="Home page">
+
     @section('hero')
     <div class="w-full text-center py-32">
         <h1 class="text-2xl md:text-3xl font-bold text-center lg:text-5xl text-gray-700">
@@ -14,10 +15,8 @@
             <h2 class="mt-16 mb-5 text-3xl text-yellow-500 font-bold">Featured Posts</h2>
             <div class="w-full">
                 <div class="grid grid-cols-3 gap-10 w-full">
-                    @foreach ($featuredPost as $post)   
-                    <div>
-                        <x-post.post-card :post="$post"   class="md:col-span-1 col-span-3"/>
-                    </div>
+                    @foreach ($featuredPost as $post)
+                        <x-post.post-card :post="$post" class="md:col-span-1 col-span-3"/>
                     @endforeach
 
 
@@ -33,9 +32,7 @@
         <div class="w-full mb-5">
             <div class="grid grid-cols-3 gap-10 w-full">
                 @foreach ($latestPosts as $post)
-                <div class="md:col-span-1 col-span-3">
-                    <x-post.post-card :post="$post" />
-                </div>
+                    <x-post.post-card :post="$post" class="md:col-span-1 col-span-3"/>
                 @endforeach
             </div>
             <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold"

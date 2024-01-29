@@ -24,12 +24,13 @@ use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PostResource\RelationManagers;
+use App\Filament\Resources\PostResource\RelationManagers\CommentsRelationManager;
 
 class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
 
     public static function form(Form $form): Form
     {
@@ -58,10 +59,9 @@ class PostResource extends Resource
                     FileUpload::make('image')->image()->directory('posts/thumbnails'),
                     DateTimePicker::make('published_at')->nullable(),
                     Checkbox::make('featured'),
-                    Select::make('author')
+                    Select::make('user_id')
                     ->relationship('author','name')
-                    ->searchable()
-                    ->required(),
+                    ->required()->searchable(),
                     Select::make('categories')
                     ->multiple()
                     ->relationship('categories', 'title')
@@ -108,7 +108,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CommentsRelationManager::class,
         ];
     }
 

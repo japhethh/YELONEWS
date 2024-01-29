@@ -1,7 +1,7 @@
-<div x-data="{
-    query : '{{ request('search','') }}',
-}">
-    {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
+
+<div x-data="{ wire:query : '{{ request('search','') }}',}"
+            x-on:keyup.enter.window="$dispatch('search',{ search: query})">
+
     <div id="search-box">
         <div>
             <h3 class="text-lg font-semibold text-gray-900 mb-3">Search</h3>
